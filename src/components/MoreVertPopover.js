@@ -18,6 +18,7 @@ const styles = theme => ({
     position: "absolute",
     width:"40%",
     height: "100%",
+    overflowWrap:"break-word",
     overflowY: "scroll",
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
@@ -377,7 +378,7 @@ class VertPopover extends Component {
           <div className={classes.paper}>
             {this.state.index === "1" ? (
               <div className={classes.noMargin}>
-                <h4 style={{margin:"2%"}}>COMMUNICATION HISTORY</h4>
+                <h4 style={{margin:"1%"}}>COMMUNICATION HISTORY</h4>
                 <TimeLine
                   events={this.events}
                 />
