@@ -21,7 +21,12 @@ const styles = theme => ({
     overflow: "scroll",
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
-    padding: theme.spacing.unit * 4
+    paddingLeft: "1%"
+  },
+
+  noMargin:{
+    margin:"0px",
+    marginBottom:"0px"
   },
 
   flex: {
@@ -29,7 +34,8 @@ const styles = theme => ({
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
-    paddingTop: "10px"
+    //paddingTop: "1%",
+    flexWrap:"wrap"
   },
 
   flexColumn: {
@@ -60,22 +66,232 @@ class VertPopover extends Component {
                     {
                       icon: "Voicemail",
                       content: "voicemail content",
-                      date: "Yesterday,Nov 19,2018"
+                      date: "Yesterday,Nov 19,2018",
+                      callSummary: "Call summary 1",
+                      contact: {
+                        "address": "string",
+                        "city": "string",
+                        "country": "string",
+                        "email": "string",
+                        "extension": "string",
+                        "faxNumber": "string",
+                        "firstName": "string",
+                        "id": 0,
+                        "isPrimary": true,
+                        "lastName": "string",
+                        "mobileNumber": "string",
+                        "phoneNumber": "string",
+                        "role": "string",
+                        "state": "string",
+                        "title": "string",
+                        "type": "string",
+                        "zip": "string"
+                      },  
                     },
                     {
                       icon: "Voicemail",
                       content: "voicemail content",
-                      date: "Yesterday,Nov 19,2018"
+                      date: "Nov 19,2018",
+                      callSummary: "Call summary 2",
+                      contact: {
+                        "address": "string",
+                        "city": "string",
+                        "country": "string",
+                        "email": "string",
+                        "extension": "string",
+                        "faxNumber": "string",
+                        "firstName": "string",
+                        "id": 0,
+                        "isPrimary": true,
+                        "lastName": "string",
+                        "mobileNumber": "string",
+                        "phoneNumber": "string",
+                        "role": "string",
+                        "state": "string",
+                        "title": "string",
+                        "type": "string",
+                        "zip": "string"
+                      },
                     },
                     {
-                      icon: "Mail",
-                      content: "mail component",
-                      date: "Today,Nov 20,2018"
+                      icon: "Voicemail",
+                      content: "voicemail component",
+                      date: "Dec 16,2018",
+                      callSummary: "Call summary 3",
+                      contact: {
+                        "address": "string",
+                        "city": "string",
+                        "country": "string",
+                        "email": "string",
+                        "extension": "string",
+                        "faxNumber": "string",
+                        "firstName": "Jessica",
+                        "id": 0,
+                        "isPrimary": true,
+                        "lastName": "Pearson",
+                        "mobileNumber": "1234567890",
+                        "phoneNumber": "1234567890",
+                        "role": "string",
+                        "state": "string",
+                        "title": "string",
+                        "type": "string",
+                        "zip": "string"
+                      },
+                      customerId: 0,
+                      duration: 0,
+                      endTime: "2018-12-18T07:12:21.507Z",
+                      extension: "string",
+                      id: 0,
+                      note: {
+                        "createdTime": "2018-12-18T07:12:21.507Z",
+                        "createdUser": "string",
+                        "customerId": 0,
+                        "documentIds": [
+                          0
+                        ],
+                        "id": 0,
+                        "noteContent": "string",
+                        "subject": "string"
+                      },
+                      startTime: "2018-12-18T07:12:21.507Z",
+                      status: "string",
+                      totalOpenAmount: 0,
+                      totalPastDueAmount: 0
                     },
                     {
                       icon: "Call",
                       content: "call component",
-                      date: "Today,Nov 20,2018"
+                      date: "Dec 18,2018",
+                      callSummary: "Call summary 4",
+                      contact: {
+                        "address": "string",
+                        "city": "string",
+                        "country": "string",
+                        "email": "string",
+                        "extension": "string",
+                        "faxNumber": "string",
+                        "firstName": "Harvey",
+                        "id": 0,
+                        "isPrimary": true,
+                        "lastName": "Specter",
+                        "mobileNumber": "1234567890",
+                        "phoneNumber": "1234567890",
+                        "role": "string",
+                        "state": "string",
+                        "title": "string",
+                        "type": "string",
+                        "zip": "string"
+                      },    
+                      customerId: 0,
+                      duration: 0,
+                      endTime: "2018-12-18T07:12:21.507Z",
+                      extension: "string",
+                      id: 0,
+                      note: {
+                        "createdTime": "2018-12-18T07:12:21.507Z",
+                        "createdUser": "string",
+                        "customerId": 0,
+                        "documentIds": [
+                          0
+                        ],
+                        "id": 0,
+                        "noteContent": "string",
+                        "subject": "string"
+                      },
+                      startTime: "2018-12-18T07:12:21.507Z",
+                      status: "string",
+                      totalOpenAmount: 0,
+                      totalPastDueAmount: 0        
+                    },
+                    {
+                      icon: "Call",
+                      content: "call component",
+                      date: "Dec 18,2018",
+                      callSummary: "Call summary 4",
+                      contact: {
+                        "address": "string",
+                        "city": "string",
+                        "country": "string",
+                        "email": "string",
+                        "extension": "string",
+                        "faxNumber": "string",
+                        "firstName": "Harvey",
+                        "id": 0,
+                        "isPrimary": true,
+                        "lastName": "Specter",
+                        "mobileNumber": "1234567890",
+                        "phoneNumber": "1234567890",
+                        "role": "string",
+                        "state": "string",
+                        "title": "string",
+                        "type": "string",
+                        "zip": "string"
+                      },    
+                      customerId: 0,
+                      duration: 0,
+                      endTime: "2018-12-18T07:12:21.507Z",
+                      extension: "string",
+                      id: 0,
+                      note: {
+                        "createdTime": "2018-12-18T07:12:21.507Z",
+                        "createdUser": "string",
+                        "customerId": 0,
+                        "documentIds": [
+                          0
+                        ],
+                        "id": 0,
+                        "noteContent": "string",
+                        "subject": "string"
+                      },
+                      startTime: "2018-12-18T07:12:21.507Z",
+                      status: "string",
+                      totalOpenAmount: 0,
+                      totalPastDueAmount: 0        
+                    },
+                    {
+                      icon: "Call",
+                      content: "call component",
+                      date: "Dec 18,2018",
+                      callSummary: "Call summary 4",
+                      contact: {
+                        "address": "string",
+                        "city": "string",
+                        "country": "string",
+                        "email": "string",
+                        "extension": "string",
+                        "faxNumber": "string",
+                        "firstName": "Harvey",
+                        "id": 0,
+                        "isPrimary": true,
+                        "lastName": "Specter",
+                        "mobileNumber": "1234567890",
+                        "phoneNumber": "1234567890",
+                        "role": "string",
+                        "state": "string",
+                        "title": "string",
+                        "type": "string",
+                        "zip": "string"
+                      },    
+                      customerId: 0,
+                      duration: 0,
+                      endTime: "2018-12-18T07:12:21.507Z",
+                      extension: "string",
+                      id: 0,
+                      note: {
+                        "createdTime": "2018-12-18T07:12:21.507Z",
+                        "createdUser": "string",
+                        "customerId": 0,
+                        "documentIds": [
+                          0
+                        ],
+                        "id": 0,
+                        "noteContent": "string",
+                        "subject": "string"
+                      },
+                      startTime: "2018-12-18T07:12:21.507Z",
+                      status: "string",
+                      totalOpenAmount: 0,
+                      totalPastDueAmount: 0        
                     }
                   ];
   }
@@ -161,8 +377,8 @@ class VertPopover extends Component {
         <Modal open={this.state.modal} onClose={this.closeModal}>
           <div className={classes.paper}>
             {this.state.index === "1" ? (
-              <div>
-                <h3>COMMUNICATION HISTORY</h3>
+              <div className={classes.noMargin}>
+                <h4>COMMUNICATION HISTORY</h4>
                 <TimeLine
                   events={this.events}
                 />

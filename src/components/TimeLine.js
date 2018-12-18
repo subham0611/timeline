@@ -6,12 +6,13 @@ import Button from '@material-ui/core/Button';
 import Mail from "@material-ui/icons/Mail";
 import Call from "@material-ui/icons/Call";
 import SummaryCard from "./SummaryCard";
+import Header from "./Header";
 import { Timeline, TimelineEvent } from "react-event-timeline";
 
 const styles={
   btnMore:{
     width:'86%',
-    marginLeft:'13%',
+    marginLeft:'10%',
     backgroundColor: '#696969',
   }
 };
@@ -25,11 +26,15 @@ class TimeLine extends Component {
     this.revEvents = [...props.events].reverse();
 
     var topEvents = [];
-    if(this.revEvents.length > 0)
-      topEvents.push(this.revEvents[0]);
-    if(this.revEvents.length > 1)
-      topEvents.push(this.revEvents[1]);
-    
+    let itemsToDisplay = 5;
+    if(this.revEvents.length > 5){
+      itemsToDisplay = 4;
+    }
+
+    for(let i = 0; i < Math.min(this.revEvents.length, itemsToDisplay); i++){
+      topEvents.push(this.revEvents[i]);
+    }
+
     this.state = {topEvents: topEvents};
 
     this.displayMore = true;
@@ -38,9 +43,9 @@ class TimeLine extends Component {
 
   displayMoreButton(){
     const { classes } = this.props;
-    if(this.revEvents.length > 2 && this.displayMore === true){
+    if(this.revEvents.length > 5 && this.displayMore === true){
       return(
-        <Button variant="contained" className={classes.btnMore} size="medium" color='default' fullWidth="true" onClick={()=> this.handleClick()}>
+        <Button variant="contained" className={classes.btnMore} size="medium" color='default' fullWidth={true} onClick={()=> this.handleClick()}>
           More
         </Button>
       );
@@ -52,17 +57,39 @@ class TimeLine extends Component {
     this.setState({topEvents:this.revEvents});     
   }
 
+  convertStringToDate(stringDate){
+    console.log("String Date = " + stringDate);
+    const newDate = new Date(Date.parse(stringDate));
+    let nextDay = new Date();
+    nextDay.setDate(newDate.getDate() + 1);
+    console.log("DATE + " + newDate);
+
+    const today = new Date();
+    let day = "Older";
+
+    if(newDate.getDay() === today.getDay() && newDate.getMonth() === today.getMonth() &&
+      newDate.getFullYear() === today.getFullYear()){
+        day = "Today";
+    }else if(nextDay.getDay() === today.getDay() && nextDay.getMonth() === today.getMonth() &&
+            nextDay.getFullYear() === today.getFullYear()){
+      day = "Yesterday";
+    }
+
+    return day + " " + stringDate;
+  }
+
   render() {
     var moreButton = this.displayMoreButton();
     
     return (
       <div>
-      <Timeline>
+      <Timeline style={{padding:"0px", marginRight:"0px"}}>
         {this.state.topEvents.map(event => (
           <TimelineEvent
-            title="John Smith"
-            titleStyle={{ fontSize: "13px" }}
-            createdAt={event.date}
+            contentStyle={{marginTop:"0px",marginRight:"0px",padding:"0px"}}
+            title=""
+            titleStyle={{ fontSize: "13px", margin:"0px",padding:"0px"}}
+            createdAt={this.convertStringToDate(event.date)}
             icon={
               event.icon === "Voicemail" ? (
                 <Voicemail />
@@ -75,19 +102,11 @@ class TimeLine extends Component {
             iconColor={"#808080"}
             bubbleStyle={{ fontSize: "5px" }}
           >
-            {event.icon === "Mail" ? (
-              <span>
-                Reply from {event.Name}({event.mailId}) at {event.time}(mail
-                extracted)
-              </span>
-            ) : (
-              <span>
-                Called {event.callerName}({event.phoneNumber}) at {event.time}(
-                {event.duration}min duration)
-              </span>
-            )}
+
+          <Header contact={event.contact} icon={event.icon} duration={event.duration} startTime={event.startTime}/>
             <hr width="0" />
-            <SummaryCard icon={event.icon} />
+          
+          <SummaryCard event="mail" summary={event.callSummary} />
             
           </TimelineEvent>
         ))}

@@ -1,9 +1,5 @@
 import React, { Component } from "react";
-import Card from "@material-ui/core/Card";
-import Grid from "@material-ui/core/Grid";
-import { CardContent, Button } from "@material-ui/core";
 import { withStyles } from "@material-ui/core";
-import PlayCircle from "@material-ui/icons/PlayCircleFilledWhiteOutlined";
 
 const styles = () => ({
   innerSummary: {
@@ -57,20 +53,39 @@ const styles = () => ({
   }
 });
 
-class SummaryCard extends Component {
+class Header extends Component {
   constructor(props){
     super(props);
     this.props = props;
   }
   render() {
     const { classes } = this.props;
-    const event = this.props.event;
+    const icon = this.props.icon;
+    const contact = this.props.contact;
+    const duration = this.props.duration;
+    const startTime = this.props.startTime;
+
     return (
-      <div style={{marginTop:"0px"}}>
-      <p style={{margin:"0px"}} > {this.props.summary}</p>
-      </div>
+        <div>
+        {icon === "Mail" ? (
+            <span>
+              Reply from {contact.firstName} {contact.lastName} ({contact.email}) at (mail
+              extracted)
+            </span>
+          ) : ( icon === "Voicemail") ? (
+            <span>
+                VM <b>{contact.firstName} {contact.lastName}</b> ({contact.phoneNumber}) 
+                at <b>{startTime}</b>({duration} min duration)
+            </span>
+          ): (
+            <span>
+              Called <b>{contact.firstName} {contact.lastName}</b> ({contact.phoneNumber}) 
+              at <b>{startTime}</b> ({duration} min duration)
+            </span>
+          )}
+        </div>
     );
   }
 }
 
-export default withStyles(styles)(SummaryCard);
+export default withStyles(styles)(Header);
