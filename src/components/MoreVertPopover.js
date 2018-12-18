@@ -16,9 +16,9 @@ const styles = theme => ({
 
   paper: {
     position: "absolute",
-    width: theme.spacing.unit * 70,
+    width:"50%",
     height: "100%",
-    overflow: "scroll",
+    overflowY: "scroll",
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
     paddingLeft: "1%"
