@@ -26,12 +26,12 @@ class TimeLine extends Component {
     this.revEvents = [...props.events].reverse();
 
     var topEvents = [];
-    let itemsToDisplay = 5;
-    if(this.revEvents.length > 5){
-      itemsToDisplay = 4;
+    this.itemsToDisplay = 5;
+    if(this.revEvents.length > this.itemsToDisplay){
+      this.itemsToDisplay--;
     }
 
-    for(let i = 0; i < Math.min(this.revEvents.length, itemsToDisplay); i++){
+    for(let i = 0; i < Math.min(this.revEvents.length, this.itemsToDisplay); i++){
       topEvents.push(this.revEvents[i]);
     }
 
@@ -43,7 +43,7 @@ class TimeLine extends Component {
 
   displayMoreButton(){
     const { classes } = this.props;
-    if(this.revEvents.length > 5 && this.displayMore === true){
+    if(this.revEvents.length > this.itemsToDisplay && this.displayMore === true){
       return(
         <Button variant="contained" className={classes.btnMore} size="medium" color='default' fullWidth={true} onClick={()=> this.handleClick()}>
           More

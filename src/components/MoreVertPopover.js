@@ -16,7 +16,7 @@ const styles = theme => ({
 
   paper: {
     position: "absolute",
-    width:"50%",
+    width:"40%",
     height: "100%",
     overflowY: "scroll",
     backgroundColor: theme.palette.background.paper,
@@ -34,7 +34,6 @@ const styles = theme => ({
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
-    //paddingTop: "1%",
     flexWrap:"wrap"
   },
 
@@ -378,7 +377,7 @@ class VertPopover extends Component {
           <div className={classes.paper}>
             {this.state.index === "1" ? (
               <div className={classes.noMargin}>
-                <h4>COMMUNICATION HISTORY</h4>
+                <h4 style={{margin:"2%"}}>COMMUNICATION HISTORY</h4>
                 <TimeLine
                   events={this.events}
                 />
