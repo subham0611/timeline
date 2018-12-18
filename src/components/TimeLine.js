@@ -83,7 +83,7 @@ class TimeLine extends Component {
     
     return (
       <div>
-      <Timeline style={{padding:"0px", marginRight:"0px"}}>
+      <Timeline style={{padding:"0px", marginRight:"0px", marginLeft:"2%"}}>
         {this.state.topEvents.map(event => (
           <TimelineEvent
             contentStyle={{marginTop:"0px",marginRight:"0px",padding:"0px"}}
