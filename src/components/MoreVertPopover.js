@@ -7,6 +7,9 @@ import Modal from "@material-ui/core/Modal";
 import TimeLine from "./TimeLine";
 import "../App.css";
 import { Button } from "@material-ui/core";
+import Fab from '@material-ui/core/Fab';
+import CloseIcon from '@material-ui/icons/Close';
+import IconButton from '@material-ui/core/IconButton';
 
 const styles = theme => ({
   popOVer: {
@@ -305,10 +308,12 @@ class VertPopover extends Component {
   };
 
   closeModal = () => {
+    document.getElementById("fabBtn").hidden=true;
     this.setState({ modal: false });
   };
 
   openModal = num => {
+    document.getElementById("fabBtn").hidden=false;
     this.setState({ modal: true, index: num });
   };
 
@@ -317,6 +322,11 @@ class VertPopover extends Component {
 
     return (
       <div className="App">
+        <div hidden={true} id="fabBtn" style={{position:"absolute", top:"0px",marginLeft:"41%"}}>
+          <IconButton style={{padding:"0px",margin:"0px", color: '#696969'}} size="small" aria-label="Add" onClick={() => this.closeModal()}>
+            <CloseIcon />
+          </IconButton>
+        </div>
         <Button onClick={this.handleOpen}>
           <MoreVert />
         </Button>
@@ -379,6 +389,7 @@ class VertPopover extends Component {
             {this.state.index === "1" ? (
               <div className={classes.noMargin}>
                 <h4 style={{margin:"1%"}}>COMMUNICATION HISTORY</h4>
+               
                 <TimeLine
                   events={this.events}
                 />
@@ -388,7 +399,10 @@ class VertPopover extends Component {
             {this.state.index === "3" ? <div> Recent Payments</div> : null}
           </div>
         </Modal>
+        
       </div>
+    
+      
     );
   }
 }
