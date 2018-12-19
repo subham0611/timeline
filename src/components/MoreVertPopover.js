@@ -13,8 +13,7 @@ import IconButton from '@material-ui/core/IconButton';
 
 const styles = theme => ({
   popOVer: {
-    height: "13.125em",
-    width: "19.500em"
+    marginBottom:"2%"
   },
 
   paper: {
@@ -22,7 +21,7 @@ const styles = theme => ({
     width:"40%",
     height: "100%",
     overflowWrap:"break-word",
-    overflowY: "scroll",
+    overflowY: "auto",
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
     paddingLeft: "1%"
@@ -322,9 +321,9 @@ class VertPopover extends Component {
 
     return (
       <div className="App">
-        <div hidden={true} id="fabBtn" style={{position:"absolute", top:"0px",marginLeft:"41%"}}>
-          <IconButton style={{padding:"0px",margin:"0px", color: '#696969'}} size="small" aria-label="Add" onClick={() => this.closeModal()}>
-            <CloseIcon />
+        <div hidden={true} id="fabBtn" style={{position:"absolute", top:"0px",marginLeft:"41%", cursor:"pointer"}}>
+          <IconButton style={{padding:"0px",margin:"0px", color: '#696969', cursor:"pointer"}} size="small" aria-label="Add" onClick={() => this.closeModal()}>
+            <CloseIcon style={{cursor:"pointer"}}/>
           </IconButton>
         </div>
         <Button onClick={this.handleOpen}>
@@ -384,7 +383,7 @@ class VertPopover extends Component {
             </div>
           </div>
         </Popover>
-        <Modal open={this.state.modal} onClose={this.closeModal}>
+      <Modal open={this.state.modal} disableAutoFocus={true} onClose={this.closeModal}>
           <div className={classes.paper}>
             {this.state.index === "1" ? (
               <div className={classes.noMargin}>
