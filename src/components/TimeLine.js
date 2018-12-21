@@ -5,6 +5,7 @@ import Voicemail from "@material-ui/icons/Voicemail";
 import Button from '@material-ui/core/Button';
 import Mail from "@material-ui/icons/Mail";
 import Call from "@material-ui/icons/Call";
+import Summary from "./Summary";
 import SummaryCard from "./SummaryCard";
 import Header from "./Header";
 import { Timeline, TimelineEvent } from "react-event-timeline";
@@ -57,6 +58,57 @@ class TimeLine extends Component {
     return day + " " + stringDate;
   }
 
+  getIconStyle = icon => {
+    if(!icon)
+      return null;
+    icon = icon.toUpperCase();
+    switch(icon){
+      case "VOICEMAIL" :
+        return <Voicemail />
+      case "MAIL" :
+        return <Mail />
+      case "CALL" :
+        return <Call />
+      case "DOLLAR" :
+        return <i class="material-icons">
+        attach_money
+        </i>;
+    }
+  }
+
+  getHeader = (index, icon, event) => {  
+    if(!icon){
+      return ""
+    }
+    icon = icon.toUpperCase();
+    if(index === 1){
+      switch(icon){
+        case "VOICEMAIL" :
+         return (
+          <span>
+          VM <b>{event.contact.firstName} {event.contact.lastName}</b> ({event.contact.phoneNumber}) 
+          at <b>{event.startTime}</b>({event.duration} min duration)
+         </span>
+         );
+
+        case "CALL" :
+          return(
+            <span>
+          Called <b>{event.contact.firstName} {event.contact.lastName}</b> ({event.contact.phoneNumber}) 
+          at <b>{event.startTime}</b>({event.duration} min duration)
+      </span>
+          );
+          
+        case "MAIL" :
+            return (
+              <span>
+                Mail
+              </span>
+            );
+      }
+    }
+  }
+
   render() {
     
     return (
@@ -68,23 +120,20 @@ class TimeLine extends Component {
             title=""
             titleStyle={{ fontSize: "13px", margin:"0px",padding:"0px"}}
             createdAt={this.convertStringToDate(event.date)}
-            icon={
-              event.icon === "Voicemail" ? (
-                <Voicemail />
-              ) : event.icon === "Mail" ? (
-                <Mail />
-              ) : (
-                <Call />
-              )
-            }
+            icon={this.getIconStyle(event.icon)}
             iconColor={"#808080"}
             bubbleStyle={{ fontSize: "5px" }}
           >
 
-          <Header contact={event.contact} icon={event.icon} duration={event.duration} startTime={event.startTime}/>
-            <hr width="0" />
+          <Header value={this.getHeader(1, event.icon, event)} />       
           
-          <SummaryCard event="mail" summary={event.callSummary} />
+          <hr width="0" />
+
+          {this.props.summaryWithCard === true ?
+            <SummaryCard summary={event} /> 
+            :<Summary  summary={event.callSummary} />
+          }
+          
             
           </TimelineEvent>
         ))}
