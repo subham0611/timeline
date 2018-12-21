@@ -5,6 +5,7 @@ import Forum from "@material-ui/icons/ForumOutlined";
 import { withStyles } from "@material-ui/core";
 import Modal from "@material-ui/core/Modal";
 import TimeLine from "./TimeLine";
+import TimeLine1 from "./TimeLine1";
 import "../App.css";
 import { Button } from "@material-ui/core";
 import Fab from '@material-ui/core/Fab';
@@ -296,8 +297,34 @@ class VertPopover extends Component {
                       totalPastDueAmount: 0        
                     }
                   ];
-  }
 
+  this.payments = [
+    {
+      currency: "string",
+      customerId: "string",
+      documentNumber: "string",
+      id: 0,
+      paymentAmount: 0,
+      paymentDate: "2018-12-21"
+    },
+    {
+      currency: "string",
+      customerId: "string",
+      documentNumber: "string",
+      id: 0,
+      paymentAmount: 0,
+      paymentDate: "2018-12-21"
+    },
+    {
+      currency: "string",
+      customerId: "string",
+      documentNumber: "string",
+      id: 0,
+      paymentAmount: 0,
+      paymentDate: "2018-12-21"
+    }
+  ]
+  };
   handleOpen = () => {
     this.setState({ open: true });
   };
@@ -314,6 +341,33 @@ class VertPopover extends Component {
   openModal = num => {
     
     this.setState({ modal: true, index: num });
+  };
+
+  getModal = num => {
+    const { classes } = this.props;
+    if(num === "1"){
+      return (
+        <div className={classes.noMargin}>
+          <h4 style={{margin:"1%"}}>COMMUNICATION HISTORY</h4>
+          <TimeLine index={1} events={this.events} />
+        </div>
+      );
+    }else if(num === "2"){
+      return (
+      <div className={classes.noMargin}>            
+             <h4 style={{margin:"1%"}}>Past due Invoices</h4>
+             <TimeLine1 events={this.payments} />      
+      </div>  
+      );
+    }else{
+      return (
+        <div className={classes.noMargin}>
+               
+               <h4 style={{margin:"1%"}}>Past due Invoices</h4>
+               <TimeLine summaryWithCard={true} events={this.payments} />             
+               </div>  
+        );
+    }
   };
 
   render() {
@@ -380,17 +434,7 @@ class VertPopover extends Component {
         </Popover>
       <Modal open={this.state.modal} disableAutoFocus={true} onClose={this.closeModal}>
           <div className={classes.paper}>
-            {this.state.index === "1" ? (
-              <div className={classes.noMargin}>
-                <h4 style={{margin:"1%"}}>COMMUNICATION HISTORY</h4>
-               
-                <TimeLine
-                  events={this.events}
-                />
-              </div>
-            ) : null}
-            {this.state.index === "2" ? <div> Past due Invoices</div> : null}
-            {this.state.index === "3" ? <div> Recent Payments</div> : null}
+           {this.getModal(this.state.index)}
           </div>
         </Modal>
         
@@ -400,7 +444,6 @@ class VertPopover extends Component {
     );
   }
 }
-
 const VertPopoverWrapped = withStyles(styles)(VertPopover);
 
 export default VertPopoverWrapped;
