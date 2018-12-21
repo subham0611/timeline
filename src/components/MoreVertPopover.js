@@ -307,12 +307,12 @@ class VertPopover extends Component {
   };
 
   closeModal = () => {
-    document.getElementById("fabBtn").hidden=true;
+    
     this.setState({ modal: false });
   };
 
   openModal = num => {
-    document.getElementById("fabBtn").hidden=false;
+    
     this.setState({ modal: true, index: num });
   };
 
@@ -321,11 +321,6 @@ class VertPopover extends Component {
 
     return (
       <div className="App">
-        <div hidden={true} id="fabBtn" style={{position:"absolute", top:"0px",marginLeft:"41%", cursor:"pointer"}}>
-          <IconButton style={{padding:"0px",margin:"0px", color: '#696969', cursor:"pointer"}} size="small" aria-label="Add" onClick={() => this.closeModal()}>
-            <CloseIcon style={{cursor:"pointer"}}/>
-          </IconButton>
-        </div>
         <Button onClick={this.handleOpen}>
           <MoreVert />
         </Button>
