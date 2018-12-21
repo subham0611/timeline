@@ -25,35 +25,14 @@ class TimeLine extends Component {
     this.props = props;
     this.revEvents = [...props.events].reverse();
 
-    var topEvents = [];
-    this.itemsToDisplay = 5;
-    if(this.revEvents.length > this.itemsToDisplay){
-      this.itemsToDisplay--;
-    }
+    this.state = {topEvents: this.revEvents};
 
-    for(let i = 0; i < Math.min(this.revEvents.length, this.itemsToDisplay); i++){
-      topEvents.push(this.revEvents[i]);
-    }
+    //this.displayMore = true;
 
-    this.state = {topEvents: topEvents};
-
-    this.displayMore = true;
-
-  }
-
-  displayMoreButton(){
-    const { classes } = this.props;
-    if(this.revEvents.length > this.itemsToDisplay && this.displayMore === true){
-      return(
-        <Button variant="contained" className={classes.btnMore} size="medium" color='default' fullWidth={true} onClick={()=> this.handleClick()}>
-          More
-        </Button>
-      );
-    }
   }
 
   handleClick() {
-    this.displayMore = false;
+   // this.displayMore = false;
     this.setState({topEvents:this.revEvents});     
   }
 
@@ -79,7 +58,6 @@ class TimeLine extends Component {
   }
 
   render() {
-    var moreButton = this.displayMoreButton();
     
     return (
       <div>
@@ -113,11 +91,6 @@ class TimeLine extends Component {
         
         
       </Timeline>
-      <div >
-      {moreButton}
-      </div>
-      
-      
       </div>
     );
   }
