@@ -8,9 +8,6 @@ import TimeLine from "./TimeLine";
 import TimeLine1 from "./TimeLine1";
 import "../App.css";
 import { Button } from "@material-ui/core";
-import Fab from '@material-ui/core/Fab';
-import CloseIcon from '@material-ui/icons/Close';
-import IconButton from '@material-ui/core/IconButton';
 
 const styles = theme => ({
   popOVer: {
@@ -370,6 +367,22 @@ class VertPopover extends Component {
     }
   };
 
+  generatePopOverItem = (index, title, titleDesc) => {
+    const { classes } = this.props;
+
+    return(
+      <div onClick={() => this.openModal(index)} className={classes.flex}>
+        <Button style={{ borderRadius: "50%" }}>
+          <Forum />
+        </Button>
+        <div className={classes.flexColumn}>
+          <span className={classes.title}>{title}</span>
+          <span className={classes.titleDesc}>{titleDesc}</span>
+        </div>
+      </div>
+    );
+  }
+
   render() {
     const { classes } = this.props;
 
@@ -397,39 +410,11 @@ class VertPopover extends Component {
           }}
         >
           <div className={classes.popOVer}>
-            <div onClick={() => this.openModal("1")} className={classes.flex}>
-              <Button style={{ borderRadius: "50%" }}>
-                <Forum />
-              </Button>
-              <div className={classes.flexColumn}>
-                <span className={classes.title}>Communication History</span>
-                <span className={classes.titleDesc}>Last call 3 days ago</span>
-              </div>
-            </div>
+            {this.generatePopOverItem("1", "Communication History","Last call 3 days ago")}
             <hr width="265" />
-            <div onClick={() => this.openModal("2")} className={classes.flex}>
-              <Button style={{ borderRadius: "50%" }}>
-                <Forum />
-              </Button>
-              <div className={classes.flexColumn}>
-                <span className={classes.title}>Past Due Invoices</span>
-                <span className={classes.titleDesc}>
-                  total :10 Invoices | $432M
-                </span>
-              </div>
-            </div>
+            {this.generatePopOverItem("2", "Past Due Invoices","total :10 Invoices | $432M")}
             <hr width="265" />
-            <div onClick={() => this.openModal("3")} className={classes.flex}>
-              <Button style={{ borderRadius: "50%" }}>
-                <Forum />
-              </Button>
-              <div className={classes.flexColumn}>
-                <span className={classes.title}>Recent Payments</span>
-                <span className={classes.titleDesc}>
-                  2 payments worth $120M
-                </span>
-              </div>
-            </div>
+            {this.generatePopOverItem("3", "Recent Payments","2 payments worth $120M")}
           </div>
         </Popover>
       <Modal open={this.state.modal} disableAutoFocus={true} onClose={this.closeModal}>
@@ -438,12 +423,9 @@ class VertPopover extends Component {
           </div>
         </Modal>
         
-      </div>
-    
-      
+      </div>   
     );
   }
 }
 const VertPopoverWrapped = withStyles(styles)(VertPopover);
-
 export default VertPopoverWrapped;
