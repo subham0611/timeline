@@ -363,8 +363,8 @@ class VertPopover extends Component {
       return (
         <div className={classes.noMargin}>
                
-               <h4 style={{margin:"1%"}}>Past due Invoices</h4>
-               <TimeLine summaryWithCard={true} events={this.payments} />             
+               <h4 style={{margin:"1%"}}>Recent Payments</h4>
+               <TimeLine index={3} summaryWithCard={true} events={this.payments} />             
                </div>  
         );
     }

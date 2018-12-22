@@ -39,23 +39,31 @@ class TimeLine extends Component {
 
   convertStringToDate(stringDate){
     console.log("String Date = " + stringDate);
+
+    const months = ["Jan", "Feb", "March", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec" ]; 
+
     const newDate = new Date(Date.parse(stringDate));
     let nextDay = new Date();
     nextDay.setDate(newDate.getDate() + 1);
-    console.log("DATE + " + newDate);
 
+    let month = newDate.getMonth();
+    month = months[month];
+    let day = newDate.getDate();
+    let year = newDate.getFullYear();
+
+    stringDate = month + " " + day + "," + year;
     const today = new Date();
-    let day = "Older";
+    let dayStatus = "Older";
 
-    if(newDate.getDay() === today.getDay() && newDate.getMonth() === today.getMonth() &&
+    if(newDate.getDate() === today.getDate() && newDate.getMonth() === today.getMonth() &&
       newDate.getFullYear() === today.getFullYear()){
-        day = "Today";
-    }else if(nextDay.getDay() === today.getDay() && nextDay.getMonth() === today.getMonth() &&
+        dayStatus = "Today";
+    }else if(nextDay.getDate() === today.getDate() && nextDay.getMonth() === today.getMonth() &&
             nextDay.getFullYear() === today.getFullYear()){
-      day = "Yesterday";
+          dayStatus = "Yesterday";
     }
 
-    return day + " " + stringDate;
+    return dayStatus + " " + stringDate;
   }
 
   getIconStyle = icon => {
@@ -76,11 +84,11 @@ class TimeLine extends Component {
     }
   }
 
-  getHeader = (index, icon, event) => {  
-    if(!icon){
-      return ""
+  getHeader = (index, icon, event) => {      
+    if(icon){
+      icon = icon.toUpperCase();
     }
-    icon = icon.toUpperCase();
+   
     if(index === 1){
       switch(icon){
         case "VOICEMAIL" :
@@ -106,6 +114,10 @@ class TimeLine extends Component {
               </span>
             );
       }
+    }else if(index === 2) {
+      return null;
+    }else {
+      return (<span>Transaction Number {event.documentNumber} at ::</span> );
     }
   }
 
@@ -119,13 +131,13 @@ class TimeLine extends Component {
             contentStyle={{marginTop:"0px",marginRight:"0px",padding:"0px"}}
             title=""
             titleStyle={{ fontSize: "13px", margin:"0px",padding:"0px"}}
-            createdAt={this.convertStringToDate(event.date)}
+            createdAt={this.convertStringToDate(event.date || event.paymentDate)}
             icon={this.getIconStyle(event.icon)}
             iconColor={"#808080"}
             bubbleStyle={{ fontSize: "5px" }}
           >
 
-          <Header value={this.getHeader(1, event.icon, event)} />       
+          <Header value={this.getHeader(this.props.index, event.icon, event)} />       
           
           <hr width="0" />
 
