@@ -54,19 +54,19 @@ getCurrencySymbol = (currency) => {
     case "DOLLAR":
       return "$"; 
     case "EURO":
-      return "&#8364;";
+        return <span>&#8364;</span>;
     case "POUND":
-      return "&#163;";
+      return <span>&#163;</span>;
     case "RUPEE":
-      return "&#8377;";
+      return <span>&#8377;</span>;
     case "YEN":
-      return "&#165;";
+      return <span>&#165;</span>;
   }
 }
 generateGrid = () => {
 
     //let currency = <div alignContent="top"><Icon icon="dollar" style={{padding:"0px"}}/> <span style={{height:"20px",fontSize:"20px",fontWidth:"5px",padding:"0px"}}><b>{this.payment.paymentAmount} </b></span></div> ;
-    let currency = <span><b>{this.getCurrencySymbol("dollar")} {this.payment.paymentAmount}</b></span>
+    let currency = <span><b>{this.getCurrencySymbol(this.payment.currency)} {this.payment.paymentAmount}</b></span>
     let value = [currency, this.payment.paymentDate, "345"];
     let header = ["Amount", "Date", "Mode"];
     //let value = this.props.value;
