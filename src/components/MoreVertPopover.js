@@ -5,7 +5,6 @@ import Forum from "@material-ui/icons/ForumOutlined";
 import { withStyles } from "@material-ui/core";
 import Modal from "@material-ui/core/Modal";
 import TimeLine from "./TimeLine";
-import TimeLine1 from "./TimeLine1";
 import "../App.css";
 import { Button } from "@material-ui/core";
 
@@ -22,12 +21,11 @@ const styles = theme => ({
     overflowY: "auto",
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
-    paddingLeft: "1%"
+    paddingLeft: "1%",
   },
 
   noMargin:{
     margin:"0px",
-    marginBottom:"0px"
   },
 
   flex: {
@@ -344,25 +342,24 @@ class VertPopover extends Component {
     const { classes } = this.props;
     if(num === "1"){
       return (
-        <div className={classes.noMargin}>
+        <div className={classes.noMargin} style={{marginBottom:"0px"}}>
           <h4 style={{margin:"1%"}}>COMMUNICATION HISTORY</h4>
           <TimeLine index={1} events={this.events} />
         </div>
       );
     }else if(num === "2"){
       return (
-      <div className={classes.noMargin}>            
-             <h4 style={{margin:"1%"}}>Past due Invoices</h4>
-             <TimeLine1 events={this.payments} />      
+      <div className={classes.noMargin} style={{marginBottom:"0px"}}>            
+        <h4 style={{margin:"1%"}}>Past due Invoices</h4>
+        <TimeLine events={this.payments} />      
       </div>  
       );
     }else{
       return (
-        <div className={classes.noMargin}>
-               
-               <h4 style={{margin:"1%"}}>Recent Payments</h4>
-               <TimeLine index={3} summaryWithCard={true} events={this.payments} />             
-               </div>  
+        <div className={classes.noMargin}>           
+          <h4 style={{margin:"1%"}}>Recent Payments</h4>
+          <TimeLine index={3} summaryWithCard={true} events={this.payments} />             
+         </div>  
         );
     }
   };
@@ -417,12 +414,11 @@ class VertPopover extends Component {
             {this.generatePopOverItem("3", "Recent Payments","2 payments worth $120M")}
           </div>
         </Popover>
-      <Modal open={this.state.modal} disableAutoFocus={true} onClose={this.closeModal}>
+        <Modal open={this.state.modal} disableAutoFocus={true} onClose={this.closeModal}>
           <div className={classes.paper}>
-           {this.getModal(this.state.index)}
+            {this.getModal(this.state.index)}
           </div>
-        </Modal>
-        
+        </Modal>     
       </div>   
     );
   }
