@@ -3,6 +3,7 @@ import Card from "@material-ui/core/Card";
 import Grid from "@material-ui/core/Grid";
 import { CardContent, Button } from "@material-ui/core";
 import { withStyles } from "@material-ui/core";
+import Icon from "./Icon";
 
 const styles = () => ({
   innerSummary: {
@@ -46,10 +47,30 @@ const styles = () => ({
 
 class SummaryCard extends Component {
 
+getCurrencySymbol = (currency) => {
+
+  currency = currency.toUpperCase();
+  switch(currency) {
+    case "DOLLAR":
+      return "$"; 
+    case "EURO":
+      return "&#8364;";
+    case "POUND":
+      return "&#163;";
+    case "RUPEE":
+      return "&#8377;";
+    case "YEN":
+      return "&#165;";
+  }
+}
 generateGrid = () => {
 
-    let value = [this.payment.paymentAmount, this.payment.paymentDate, "345"];
-    let header = ["Amount", "Date", "c"];
+    //let currency = <div alignContent="top"><Icon icon="dollar" style={{padding:"0px"}}/> <span style={{height:"20px",fontSize:"20px",fontWidth:"5px",padding:"0px"}}><b>{this.payment.paymentAmount} </b></span></div> ;
+    let currency = <span><b>{this.getCurrencySymbol("dollar")} {this.payment.paymentAmount}</b></span>
+    let value = [currency, this.payment.paymentDate, "345"];
+    let header = ["Amount", "Date", "Mode"];
+    //let value = this.props.value;
+    //let header = this.props.header;
     const gridSize = 12 / (value.length + 1);
 
     let grid = [];

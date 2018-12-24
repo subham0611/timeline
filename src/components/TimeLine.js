@@ -17,25 +17,41 @@ class TimeLine extends Component {
     this.props = props;
     this.revEvents = [...props.events].reverse();
     this.state = {topEvents: this.revEvents};
+
   }
 
   handleClick() {
     this.setState({topEvents:this.revEvents});     
   }
 
-  convertStringToDate(stringDate){
-    const months = ["Jan", "Feb", "March", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec" ]; 
+  convertStringToDate = (stringDate) => {
+    const months = ["Jan", "Feb", "March", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec" ];
 
+    const newDate = new Date(Date.parse(stringDate));
+    let month = newDate.getMonth();
+    month = months[month];
+    let day = newDate.getDate();
+    let year = newDate.getFullYear();
+    stringDate = month + " " + day + "," + year; 
+
+    return stringDate;
+  }
+
+  getTitleString(stringDate){
+    //const months = ["Jan", "Feb", "March", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec" ]; 
+
+    stringDate = this.convertStringToDate(stringDate);
     const newDate = new Date(Date.parse(stringDate));
     let nextDay = new Date();
     nextDay.setDate(newDate.getDate() + 1);
     const today = new Date();
 
-    let month = newDate.getMonth();
+    /* let month = newDate.getMonth();
     month = months[month];
     let day = newDate.getDate();
     let year = newDate.getFullYear();
     stringDate = month + " " + day + "," + year;
+    */
     
     let dayStatus = "Older";
     
@@ -96,8 +112,8 @@ class TimeLine extends Component {
             contentStyle={{margin:"0px",padding:"0px"}}
             title=""
             titleStyle={{ fontSize: "13px", margin:"0px",padding:"0px"}}
-            createdAt={this.convertStringToDate(event.date || event.paymentDate)}
-            icon = {<Icon icon={event.icon} />}
+            createdAt={this.getTitleString(event.date || event.paymentDate)}
+            icon = {<Icon icon={event.icon || "dollar"} />}
             iconColor={"#808080"}
             bubbleStyle={{ fontSize: "5px" }}
           >
@@ -108,7 +124,7 @@ class TimeLine extends Component {
 
           {this.props.summaryWithCard === true ?
             <SummaryCard summary={event} /> 
-            :<Summary  summary={event.callSummary} />
+            :<Summary summary={event.callSummary} />
           }        
             
           </TimelineEvent>
