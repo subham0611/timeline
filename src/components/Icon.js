@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { withStyles } from "@material-ui/core";
 import Voicemail from "@material-ui/icons/Voicemail";
+import Dollar from "@material-ui/icons/AttachMoney";
+import Euro from "@material-ui/icons/EuroSymbol";
 import Mail from "@material-ui/icons/Mail";
 import Call from "@material-ui/icons/Call";
 
@@ -25,9 +27,9 @@ class Icon extends Component {
       case "CALL" :
         return <Call />
       case "DOLLAR" :
-        return <i class="material-icons">
-        attach_money
-        </i>;
+        return <Dollar />
+      case "EURO" :
+        return <Euro />
     }
   }
 

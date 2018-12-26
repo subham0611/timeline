@@ -63,11 +63,26 @@ getCurrencySymbol = (currency) => {
       return <span>&#165;</span>;
   }
 }
+
+convertDateToString = (stringDate) => {
+  const months = ["Jan", "Feb", "March", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec" ];
+
+  const newDate = new Date(Date.parse(stringDate));
+  let month = newDate.getMonth();
+  month = months[month];
+  let day = newDate.getDate();
+  let year = newDate.getFullYear();
+  stringDate = month + " " + day + "," + year; 
+
+  return stringDate;
+}
+
 generateGrid = () => {
 
     //let currency = <div alignContent="top"><Icon icon="dollar" style={{padding:"0px"}}/> <span style={{height:"20px",fontSize:"20px",fontWidth:"5px",padding:"0px"}}><b>{this.payment.paymentAmount} </b></span></div> ;
     let currency = <span><b>{this.getCurrencySymbol(this.payment.currency)} {this.payment.paymentAmount}</b></span>
-    let value = [currency, this.payment.paymentDate, "345"];
+    let paymentDate = <b>{this.convertDateToString(this.payment.paymentDate)}</b>;
+    let value = [currency, paymentDate, "345"];
     let header = ["Amount", "Date", "Mode"];
     //let value = this.props.value;
     //let header = this.props.header;
